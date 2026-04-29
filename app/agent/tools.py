@@ -86,13 +86,17 @@ TOOL_DEFINITIONS: list[ChatCompletionToolParam] = [
 
 async def execute_tool(name: str, inputs: dict) -> str:
     if name == "web_search":
-        return await _web_search(inputs["query"])
+        query = inputs.get("query") or inputs.get("search_query") or inputs.get("q") or list(inputs.values())[0]
+        return await _web_search(query)
     elif name == "read_file":
-        return _read_file(inputs["path"])
+        path = inputs.get("path") or inputs.get("file_path") or list(inputs.values())[0]
+        return _read_file(path)
     elif name == "run_python":
-        return _run_python(inputs["code"])
+        code = inputs.get("code") or inputs.get("script") or list(inputs.values())[0]
+        return _run_python(code)
     elif name == "get_package_version":
-        return await _get_package_version(inputs["package"])
+        package = inputs.get("package") or inputs.get("package_name") or list(inputs.values())[0]
+        return await _get_package_version(package)
     else:
         return f"Error: unknown tool '{name}'"
     
