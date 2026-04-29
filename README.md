@@ -37,7 +37,7 @@ POST /agent/run
 ## Project status
 
 - [x] Milestone 1 — Tool use foundations
-- [ ] Milestone 2 — ReAct loop
+- [x] Milestone 2 — ReAct loop
 - [ ] Milestone 3 — Parallel tools + session memory
 - [ ] Milestone 4 — SSE streaming
 - [ ] Milestone 5 — MCP server
